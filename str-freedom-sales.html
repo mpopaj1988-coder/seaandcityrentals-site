@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STR Freedom Blueprint — Stop Paying Airbnb Fees</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --gold: #f59e0b;
+    --gold-light: #fcd34d;
+    --white: #f8fafc;
+    --gray: #94a3b8;
+    --dark: #0f172a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0a1628 0%, #0f2744 40%, #0a1628 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(13,148,136,0.2);
+    border: 1px solid rgba(13,148,136,0.4);
+    color: var(--teal-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 100px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 3vw, 22px);
+    color: var(--gray);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+
+  .hero-sub strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .price-original {
+    font-size: 18px;
+    color: var(--gray);
+    text-decoration: line-through;
+  }
+
+  .price-current {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .price-note {
+    font-size: 13px;
+    color: var(--teal-light);
+    letter-spacing: 1px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 20px 48px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 40px rgba(13,148,136,0.3);
+    animation: fadeUp 0.6s ease 0.4s both;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(13,148,136,0.5);
+  }
+
+  .guarantee {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--gray);
+    animation: fadeUp 0.6s ease 0.5s both;
+  }
+
+  /* PAIN SECTION */
+  .pain {
+    background: #080e1a;
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .pain h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 56px);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .pain-intro {
+    color: var(--gray);
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pain-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 32px 28px;
+    text-align: left;
+  }
+
+  .pain-card .icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .pain-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .pain-card p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* MATH SECTION */
+  .math {
+    padding: 80px 24px;
+    background: linear-gradient(180deg, #0a1628 0%, #080e1a 100%);
+    text-align: center;
+  }
+
+  .math h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 56px);
+    margin-bottom: 16px;
+  }
+
+  .math-sub {
+    color: var(--gray);
+    font-size: 18px;
+    max-width: 500px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
+
+  .math-table {
+    max-width: 700px;
+    margin: 0 auto 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .math-table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background: rgba(13,148,136,0.2);
+    padding: 16px 24px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    gap: 8px;
+  }
+
+  .math-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 20px 24px;
+    gap: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 15px;
+  }
+
+  .math-row:nth-child(even) {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .math-row.highlight {
+    background: rgba(245,158,11,0.08);
+    border-color: rgba(245,158,11,0.2);
+  }
+
+  .math-row .win {
+    color: var(--teal-light);
+    font-weight: 700;
+  }
+
+  .math-callout {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 8px;
+    padding: 28px 32px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--white);
+  }
+
+  .math-callout strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* WHAT YOU GET */
+  .product {
+    padding: 80px 24px;
+    background: #080e1a;
+    text-align: center;
+  }
+
+  .product h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 56px);
+    margin-bottom: 16px;
+  }
+
+  .product-sub {
+    color: var(--gray);
+    font-size: 18px;
+    max-width: 500px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    text-align: left;
+  }
+
+  .step-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .step-card:hover {
+    border-color: rgba(13,148,136,0.3);
+  }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(13,148,136,0.3);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .step-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .step-card p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 80px 24px;
+    background: linear-gradient(180deg, #0a1628 0%, #080e1a 100%);
+    text-align: center;
+  }
+
+  .about-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .about h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 56px);
+    margin-bottom: 32px;
+  }
+
+  .about p {
+    font-size: 17px;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .about p strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 48px 0;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--teal-light);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 100px 24px;
+    background: #080e1a;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(13,148,136,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 8vw, 80px);
+    line-height: 1;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .cta-section h2 span {
+    color: var(--gold);
+  }
+
+  .cta-section p {
+    font-size: 18px;
+    color: var(--gray);
+    max-width: 520px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .cta-price-block {
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .cta-price-block .was {
+    font-size: 16px;
+    color: var(--gray);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .cta-price-block .now {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .cta-price-block .limited {
+    font-size: 13px;
+    color: var(--teal-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .includes-list {
+    list-style: none;
+    max-width: 440px;
+    margin: 0 auto 40px;
+    text-align: left;
+    position: relative;
+  }
+
+  .includes-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 15px;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .includes-list li::before {
+    content: '✓';
+    color: var(--teal-light);
+    font-weight: 700;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 40px 24px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+
+  footer a {
+    color: var(--teal-light);
+    text-decoration: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .math-table-header,
+    .math-row {
+      grid-template-columns: 1fr 1fr;
+      font-size: 13px;
+      padding: 14px 16px;
+    }
+    .stats-row { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="badge">For STR Hosts Ready to Break Free</span>
+  <h1>Stop Funding<span>Airbnb.</span></h1>
+  <p class="hero-sub">The complete system to build your own direct booking channel — <strong>used across 9 real properties</strong> in the Tampa Bay area. No tech skills needed. No expensive developers. One weekend to implement.</p>
+  <div class="price-block">
+    <span class="price-original">$97</span>
+    <span class="price-current">$47</span>
+    <span class="price-note">★ LAUNCH PRICE — LIMITED TIME ★</span>
+  </div>
+  <a href="#buy" class="cta-btn">Get the Blueprint →</a>
+  <p class="guarantee">📄 Instant PDF download &nbsp;·&nbsp; 30-day money back guarantee</p>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <h2>Sound Familiar?</h2>
+  <p class="pain-intro">Every month, Airbnb quietly takes a cut of your income. And there's nothing you can do about it — until now.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <span class="icon">💸</span>
+      <h3>You're paying 15-20% in fees on every booking</h3>
+      <p>On a $100K portfolio that's $15,000-20,000 a year going to a middleman who did nothing to earn your guests' loyalty.</p>
+    </div>
+    <div class="pain-card">
+      <span class="icon">😰</span>
+      <h3>Your entire business depends on one platform</h3>
+      <p>Airbnb can suspend your listing with zero warning. It happens to hosts with hundreds of 5-star reviews. Your business shouldn't live or die by their algorithm.</p>
+    </div>
+    <div class="pain-card">
+      <span class="icon">🔁</span>
+      <h3>Guests come back — through Airbnb again</h3>
+      <p>They loved their stay. They want to rebook. But they go back to Airbnb because you have no way to bring them back directly. You're building their customer base, not yours.</p>
+    </div>
+    <div class="pain-card">
+      <span class="icon">🤷</span>
+      <h3>You don't know where to start</h3>
+      <p>Everyone says "build a direct booking site" but nobody tells you exactly how to do it without spending thousands on developers or months of trial and error.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATH -->
+<section class="math">
+  <h2>The Math That Changes Everything</h2>
+  <p class="math-sub">Direct booking guests at a 10% discount still make you more money than Airbnb at full price.</p>
+  <div class="math-table">
+    <div class="math-table-header">
+      <span>Scenario</span>
+      <span>Revenue</span>
+      <span>Fees</span>
+      <span>You Keep</span>
+    </div>
+    <div class="math-row">
+      <span>10 Airbnb bookings @ $1,000</span>
+      <span>$10,000</span>
+      <span style="color:#ef4444">$1,500</span>
+      <span>$8,500</span>
+    </div>
+    <div class="math-row highlight">
+      <span>10 direct bookings @ $900 (10% off)</span>
+      <span>$9,000</span>
+      <span style="color:#10b981">$0</span>
+      <span class="win">$9,000 ✓</span>
+    </div>
+  </div>
+  <div class="math-callout">
+    Offer guests <strong>10% off to book direct</strong> and you still make more money than Airbnb at full price — while your guest pays less. <strong>Everybody wins except Airbnb.</strong>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="product">
+  <h2>What's Inside the Blueprint</h2>
+  <p class="product-sub">7 steps. One weekend. A direct booking channel that runs on autopilot.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <h3>Build Your Direct Booking Website</h3>
+      <p>Exactly how to build a professional property website for free using AI — no developers, no coding, no monthly website fees.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <h3>Set Up Your Booking Engine</h3>
+      <p>Connect a booking engine that syncs with Airbnb and VRBO, takes direct payments, and sends automated confirmations.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <h3>Install the Meta Pixel</h3>
+      <p>The free tracking tool that follows your site visitors around the internet and brings them back to book. Step-by-step setup included.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <h3>Get on Google Vacation Rentals</h3>
+      <p>Free distribution that puts your property in Google search results with a direct Book Now button. Most hosts don't know this exists.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">05</div>
+      <h3>Build Your Email List</h3>
+      <p>The only marketing channel nobody can take from you. How to build it, grow it, and use it to fill your calendar with direct bookings.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">06</div>
+      <h3>Re-Engage Past Guests</h3>
+      <p>The exact strategy to bring past Airbnb guests back through your direct channel — without violating Airbnb's TOS.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">07</div>
+      <h3>Run Meta Ads That Convert</h3>
+      <p>Copy-paste ad copy templates, targeting strategy, and the $5/day campaign setup that generated $900 in bookings in week one.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">+</div>
+      <h3>30-Day Implementation Plan</h3>
+      <p>A day-by-day action plan so you know exactly what to do and when. No guessing, no overwhelm — just execute.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner">
+    <h2>Built By a Real Host</h2>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">9</div>
+        <div class="stat-label">Properties</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Property Managers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Developer Cost</div>
+      </div>
+    </div>
+    <p>I manage <strong>9 short-term rental properties in the Tampa Bay area</strong> — St. Pete, Clearwater, Indian Rocks Beach, Tampa, Largo, Palm Harbor — without a property manager, without a VA, and without handing 15% of every booking to Airbnb.</p>
+    <p>I built this system through years of trial and error. I paid for the mistakes so you don't have to. The STR Freedom Blueprint is everything I know about direct bookings, condensed into a system you can implement in one weekend.</p>
+    <p><strong>This isn't theory. These are the exact steps I used.</strong></p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="buy">
+  <h2>Ready to Build<br><span>Your Freedom?</span></h2>
+  <p>Get the complete system today. Instant download. Implement this weekend.</p>
+  <div class="cta-price-block">
+    <div class="was">Regular price $97</div>
+    <div class="now">$47</div>
+    <div class="limited">⚡ Launch pricing — first 50 buyers only</div>
+  </div>
+  <ul class="includes-list">
+    <li>The complete 7-step STR Freedom Blueprint PDF</li>
+    <li>30-day implementation plan</li>
+    <li>Meta ads copy-paste templates</li>
+    <li>Direct booking website checklist</li>
+    <li>Full tools list with costs</li>
+    <li>Instant download — no waiting</li>
+    <li>30-day money back guarantee</li>
+  </ul>
+  <a href="https://freedomstrider.gumroad.com/l/mdhna" class="cta-btn">Get Instant Access — $47 →</a>
+  <p style="margin-top:20px; font-size:13px; color:var(--gray)">Secure checkout &nbsp;·&nbsp; Instant PDF delivery &nbsp;·&nbsp; 30-day guarantee</p>
+</section>
+
+<footer>
+  <p>© 2026 STR Freedom &nbsp;·&nbsp; <a href="https://instagram.com/strfreedom">@strfreedom</a> &nbsp;·&nbsp; Questions? <a href="mailto:strfreedom@gmail.com">strfreedom@gmail.com</a></p>
+  <p style="margin-top:8px">Results are not guaranteed. Individual results will vary based on effort, market, and implementation.</p>
+</footer>
+
+</body>
+</html>
