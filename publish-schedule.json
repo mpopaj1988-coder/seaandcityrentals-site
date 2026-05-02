@@ -1,0 +1,30 @@
+{
+  "posts": [
+    { "week": 1,  "file": "week1-st-pete-weekend-guide.html",        "date": "2026-05-05" },
+    { "week": 2,  "file": "week2-memorial-day-clearwater.html",       "date": "2026-05-12" },
+    { "week": 3,  "file": "week3-book-direct.html",                   "date": "2026-05-19" },
+    { "week": 4,  "file": "week4-dog-friendly-beaches.html",          "date": "2026-05-26" },
+    { "week": 5,  "file": "week5-family-activities-clearwater.html",  "date": "2026-06-02" },
+    { "week": 6,  "file": "week6-where-to-eat-st-pete.html",          "date": "2026-06-09" },
+    { "week": 7,  "file": "week7-indian-rocks-beach-guide.html",      "date": "2026-06-16" },
+    { "week": 8,  "file": "week8-florida-rainy-season.html",          "date": "2026-06-23" },
+    { "week": 9,  "file": "week9-4th-of-july-tampa-bay.html",         "date": "2026-06-30" },
+    { "week": 10, "file": "week10-beach-with-toddlers.html",          "date": "2026-07-07" },
+    { "week": 11, "file": "week11-palm-harbor-dunedin-guide.html",    "date": "2026-07-14" },
+    { "week": 12, "file": "week12-rental-vs-hotel.html",              "date": "2026-07-21" },
+    { "week": 13, "file": "week13-pet-friendly-restaurants.html",     "date": "2026-07-28" },
+    { "week": 14, "file": "week14-end-of-summer-family.html",         "date": "2026-08-04" },
+    { "week": 15, "file": "week15-best-seafood-restaurants.html",     "date": "2026-08-11" },
+    { "week": 16, "file": "week16-largo-seminole-guide.html",         "date": "2026-08-18" },
+    { "week": 17, "file": "week17-rainy-day-activities.html",         "date": "2026-08-25" },
+    { "week": 18, "file": "week18-september-travel.html",             "date": "2026-09-01" },
+    { "week": 19, "file": "week19-dog-travel-packing-list.html",      "date": "2026-09-08" },
+    { "week": 20, "file": "week20-tampa-city-guide.html",             "date": "2026-09-15" },
+    { "week": 21, "file": "week21-choose-right-rental.html",          "date": "2026-09-22" },
+    { "week": 22, "file": "week22-fall-florida-october.html",         "date": "2026-09-29" },
+    { "week": 23, "file": "week23-best-breakfast-spots.html",         "date": "2026-10-06" },
+    { "week": 24, "file": "week24-fall-break-family-itinerary.html",  "date": "2026-10-13" },
+    { "week": 25, "file": "week25-pet-friendly-parks-trails.html",    "date": "2026-10-20" },
+    { "week": 26, "file": "week26-best-deal-vacation-rental.html",    "date": "2026-10-27" }
+  ]
+}
