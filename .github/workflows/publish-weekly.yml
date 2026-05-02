@@ -1,1 +1,59 @@
+name: Publish Weekly Blog Post
+
+on:
+  schedule:
+    # Runs every Tuesday at 8:00am UTC
+    - cron: '0 8 * * 2'
+  workflow_dispatch:
+    # Also allows manual trigger from GitHub Actions tab
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
+
+      - name: Remove posts not yet due
+        run: |
+          python3 << 'PYEOF'
+          import json, os
+          from datetime import date
+
+          today = date.today()
+          print(f"Today is {today}")
+
+          with open("publish-schedule.json") as f:
+              schedule = json.load(f)
+
+          for post in schedule["posts"]:
+              publish_date = date.fromisoformat(post["date"])
+              filepath = f"blog/{post['file']}"
+
+              if publish_date > today:
+                  if os.path.exists(filepath):
+                      os.remove(filepath)
+                      print(f"Removed (not yet due): {post['file']} — scheduled for {post['date']}")
+              else:
+                  if os.path.exists(filepath):
+                      print(f"Live: {post['file']} — published {post['date']}")
+                  else:
+                      print(f"WARNING: {post['file']} should be live but missing from blog/")
+
+          PYEOF
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A blog/
+          if git diff --staged --quiet; then
+            echo "Nothing to commit — no changes this week."
+          else
+            git commit -m "Weekly publish: $(date +%Y-%m-%d)"
+            git push
+          fi
 
