@@ -3,7 +3,7 @@ name: Publish Weekly Blog Post
 on:
   schedule:
     # Runs every Tuesday at 8:00am UTC
-    - cron: '0 8 * * 2'
+    - cron: '0 8 * * 1'
   workflow_dispatch:
     # Also allows manual trigger from GitHub Actions tab
 
