@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gulf Coast Travel Blog | Sea & City Rentals</title>
+<meta name="description" content="Gulf Coast travel guides, local tips, seasonal guides, and insider advice from Sea & City Rentals — Tampa Bay's direct booking vacation rental company.">
+<meta name="keywords" content="Gulf Coast travel blog, Tampa Bay vacation tips, St. Pete travel guide, Clearwater Beach guide">
+<meta property="og:title" content="Gulf Coast Travel Blog | Sea & City Rentals">
+<meta property="og:description" content="Gulf Coast travel guides, local tips, and insider advice from Sea & City Rentals.">
+<meta property="og:url" content="https://seaandcityrentals.com/blog/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://seaandcityrentals.com/blog/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5EFE4;
+    --sand-dark: #EDE4D4;
+    --ocean: #1A3A4A;
+    --ocean-mid: #2C5364;
+    --teal: #3D8B8B;
+    --teal-light: #5AAFAF;
+    --gold: #C9A84C;
+    --gold-light: #E2C068;
+    --white: #FDFBF8;
+    --text-dark: #1C1C1C;
+    --text-mid: #4A4A4A;
+    --text-light: #7A7A7A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: #F5EFE4 !important; color: #1C1C1C !important; color-scheme: light; scroll-behavior: smooth; }
+  body { background: #F5EFE4 !important; color: #1C1C1C !important; font-family: 'Jost', sans-serif; font-weight: 300; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    html, body, main, footer, .blog-grid { background: #F5EFE4 !important; color: #1C1C1C !important; }
+    p, li, h2, h3 { color: #1C1C1C !important; }
+    .card { background: #FDFBF8 !important; }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 40px; height: 70px;
+    background: rgba(26,58,74,0.97);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: #FDFBF8; text-decoration: none;
+    letter-spacing: 1px;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(253,251,248,0.8); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: #C9A84C; }
+  .nav-cta {
+    background: #C9A84C; color: #1A3A4A !important;
+    padding: 8px 20px;
+    font-weight: 500 !important;
+  }
+  .nav-cta:hover { background: #E2C068 !important; color: #1A3A4A !important; }
+
+  /* HERO */
+  .hero {
+    background: var(--ocean);
+    padding: 130px 24px 80px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(61,139,139,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 600; color: #FDFBF8;
+    line-height: 1.2; max-width: 700px;
+    margin: 0 auto 20px; position: relative;
+  }
+  .hero p {
+    font-size: 1rem; color: rgba(253,251,248,0.7);
+    max-width: 520px; margin: 0 auto;
+    line-height: 1.7; position: relative;
+  }
+
+  /* FILTER TABS */
+  .filters {
+    background: var(--sand-dark);
+    padding: 24px;
+    display: flex; gap: 10px;
+    flex-wrap: wrap; justify-content: center;
+    border-bottom: 1px solid rgba(26,58,74,0.1);
+  }
+  .filter-btn {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid rgba(26,58,74,0.3);
+    background: transparent; color: var(--ocean);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--ocean); color: #FDFBF8;
+    border-color: var(--ocean);
+  }
+
+  /* BLOG GRID */
+  main { background: #F5EFE4 !important; padding: 60px 24px 80px; }
+  .blog-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+    background: #F5EFE4 !important;
+  }
+
+  /* CARD */
+  .card {
+    background: #FDFBF8 !important;
+    border: 1px solid rgba(26,58,74,0.1);
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(26,58,74,0.12);
+  }
+  .card-top {
+    height: 6px;
+    background: var(--teal);
+  }
+  .card-top.seasonal { background: #C9A84C; }
+  .card-top.family { background: #3D8B8B; }
+  .card-top.pet { background: #2a5a3a; }
+  .card-top.food { background: #8a3a1a; }
+  .card-top.tips { background: #1A3A4A; }
+  .card-top.area { background: #2C5364; }
+
+  .card-body { padding: 28px; }
+  .card-meta {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 12px;
+  }
+  .card-category {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--teal);
+  }
+  .card-date {
+    font-size: 11px; color: var(--text-light);
+  }
+  .card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 600;
+    color: var(--ocean) !important;
+    line-height: 1.3; margin-bottom: 12px;
+    border: none; padding: 0; margin-top: 0;
+  }
+  .card p {
+    font-size: 0.9rem; color: var(--text-mid) !important;
+    line-height: 1.65; margin: 0;
+  }
+  .card-footer {
+    padding: 16px 28px;
+    border-top: 1px solid rgba(26,58,74,0.06);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--teal);
+  }
+
+  /* COMING SOON CARD */
+  .card.coming-soon {
+    opacity: 0.5; pointer-events: none;
+  }
+  .card.coming-soon .card-footer { color: var(--text-light); }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--ocean);
+    padding: 80px 24px; text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600; color: #FDFBF8;
+    margin-bottom: 16px;
+    border: none; padding: 0;
+  }
+  .cta-section p {
+    font-size: 1rem; color: rgba(253,251,248,0.75);
+    max-width: 500px; margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold); color: var(--ocean);
+    padding: 14px 36px; text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    background: #0d2030 !important;
+    padding: 40px 24px; text-align: center;
+  }
+  footer p {
+    font-size: 12px; color: rgba(253,251,248,0.45) !important;
+    line-height: 1.8;
+  }
+  footer a { color: var(--teal); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://seaandcityrentals.com" class="nav-logo">Sea &amp; City</a>
+  <div class="nav-links">
+    <a href="https://seaandcityrentals.com">Home</a>
+    <a href="https://seaandcityrentals.com/#properties">Properties</a>
+    <a href="/blog/" class="active">Blog</a>
+    <a href="https://seaandcityrentals.com/#contact" class="nav-cta">Book Direct</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Gulf Coast Travel Guide</div>
+  <h1>The Sea &amp; City Blog</h1>
+  <p>Local guides, seasonal tips, and insider advice for getting the most out of the Tampa Bay Gulf Coast.</p>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filterCards('all')">All Posts</button>
+  <button class="filter-btn" onclick="filterCards('area')">Area Guides</button>
+  <button class="filter-btn" onclick="filterCards('family')">Family</button>
+  <button class="filter-btn" onclick="filterCards('pet')">Pet-Friendly</button>
+  <button class="filter-btn" onclick="filterCards('food')">Food &amp; Dining</button>
+  <button class="filter-btn" onclick="filterCards('seasonal')">Seasonal</button>
+  <button class="filter-btn" onclick="filterCards('tips')">Guest Tips</button>
+</div>
+
+<main>
+<div class="blog-grid">
+
+  <a href="/blog/week1-st-pete-weekend-guide.html" class="card" data-cat="area">
+    <div class="card-top area"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Area Guide</span><span class="card-date">May 5, 2026</span></div>
+      <h2>The Ultimate Weekend Guide to St. Pete Beach</h2>
+      <p>Beaches, sunsets, food, day trips, and insider tips that make you feel like a local by Saturday afternoon.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week2-memorial-day-clearwater.html" class="card" data-cat="seasonal">
+    <div class="card-top seasonal"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Seasonal</span><span class="card-date">May 12, 2026</span></div>
+      <h2>Memorial Day Weekend in Clearwater: What to Expect</h2>
+      <p>The honest rundown on Memorial Day at Clearwater Beach — what to expect and how to plan ahead.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week3-book-direct.html" class="card" data-cat="tips">
+    <div class="card-top tips"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Guest Tips</span><span class="card-date">May 19, 2026</span></div>
+      <h2>7 Reasons to Book Your Vacation Rental Direct</h2>
+      <p>Airbnb is convenient but costs you 14–16% in fees. Here's why booking direct is almost always the better move.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week4-dog-friendly-beaches.html" class="card" data-cat="pet">
+    <div class="card-top pet"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Pet-Friendly</span><span class="card-date">May 26, 2026</span></div>
+      <h2>Best Dog-Friendly Beaches in the Tampa Bay Area</h2>
+      <p>The Tampa Bay area is genuinely one of the best places in Florida to travel with your dog — including the beach.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week5-family-activities-clearwater.html" class="card" data-cat="family">
+    <div class="card-top family"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Family Travel</span><span class="card-date">Jun 2, 2026</span></div>
+      <h2>Best Family-Friendly Activities Near Clearwater Beach</h2>
+      <p>The full playbook for a family trip to Clearwater Beach — aquarium, Pier 60, Caladesi Island, and more.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week6-where-to-eat-st-pete.html" class="card" data-cat="food">
+    <div class="card-top food"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Food &amp; Dining</span><span class="card-date">Jun 9, 2026</span></div>
+      <h2>Where to Eat in St. Pete: Local Favorites by Neighborhood</h2>
+      <p>Heavy on places locals actually go, light on tourist traps — the neighborhood-by-neighborhood food guide.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week7-indian-rocks-beach-guide.html" class="card" data-cat="area">
+    <div class="card-top area"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Area Guide</span><span class="card-date">Jun 16, 2026</span></div>
+      <h2>Indian Rocks Beach: The Low-Key Alternative to Clearwater</h2>
+      <p>Just as beautiful as Clearwater, a fraction of the crowds. Here's what to know before you go.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week8-florida-rainy-season.html" class="card" data-cat="seasonal">
+    <div class="card-top seasonal"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Seasonal</span><span class="card-date">Jun 23, 2026</span></div>
+      <h2>What to Know About Florida's Rainy Season</h2>
+      <p>The afternoon storms aren't a reason to cancel your trip. Here's how to work with them instead of around them.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week9-4th-of-july-tampa-bay.html" class="card" data-cat="seasonal">
+    <div class="card-top seasonal"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Seasonal</span><span class="card-date">Jun 30, 2026</span></div>
+      <h2>4th of July in Tampa Bay: Fireworks, Events &amp; Where to Stay</h2>
+      <p>Fireworks over the water, watercraft parades, and warm summer nights. Here's how to make the most of it.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week10-beach-with-toddlers.html" class="card" data-cat="family">
+    <div class="card-top family"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Family Travel</span><span class="card-date">Jul 7, 2026</span></div>
+      <h2>How to Plan a Stress-Free Beach Trip with Toddlers</h2>
+      <p>The right beach, the right timing, the actual gear list — everything you need for the Gulf Coast with young kids.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week11-palm-harbor-dunedin-guide.html" class="card" data-cat="area">
+    <div class="card-top area"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Area Guide</span><span class="card-date">Jul 14, 2026</span></div>
+      <h2>A Local's Guide to Palm Harbor and Dunedin</h2>
+      <p>Two of the best towns in the region that most Gulf Coast visitors never see. Here's why that's a mistake.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week12-rental-vs-hotel.html" class="card" data-cat="tips">
+    <div class="card-top tips"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Guest Tips</span><span class="card-date">Jul 21, 2026</span></div>
+      <h2>Vacation Rental vs. Hotel: Which Is Actually Cheaper?</h2>
+      <p>The answer depends on group size, length of stay, and what you count as a cost. Here's the honest breakdown.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week13-pet-friendly-restaurants.html" class="card" data-cat="pet">
+    <div class="card-top pet"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Pet-Friendly</span><span class="card-date">Jul 28, 2026</span></div>
+      <h2>Pet-Friendly Restaurants and Bars in the Tampa Bay Area</h2>
+      <p>The lineup of restaurants and bars that don't just tolerate your dog — they actually seem happy to see them.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week14-end-of-summer-family.html" class="card" data-cat="family">
+    <div class="card-top family"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Family Travel</span><span class="card-date">Aug 4, 2026</span></div>
+      <h2>End-of-Summer Family Vacation Ideas in Tampa Bay</h2>
+      <p>A full bucket list for families looking to make the most of the last weeks before school starts.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week15-best-seafood-restaurants.html" class="card" data-cat="food">
+    <div class="card-top food"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Food &amp; Dining</span><span class="card-date">Aug 11, 2026</span></div>
+      <h2>Best Seafood Restaurants in Clearwater and St. Pete</h2>
+      <p>From the no-frills classics to the places you save for a special night — the Gulf Coast seafood guide.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week16-largo-seminole-guide.html" class="card" data-cat="area">
+    <div class="card-top area"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Area Guide</span><span class="card-date">Aug 18, 2026</span></div>
+      <h2>Largo and Seminole: Hidden Gems Just Off the Beach</h2>
+      <p>They don't appear on many travel itineraries — and that's precisely what makes them worth knowing about.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week17-rainy-day-activities.html" class="card" data-cat="tips">
+    <div class="card-top tips"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Guest Tips</span><span class="card-date">Aug 25, 2026</span></div>
+      <h2>10 Things to Do in Tampa Bay on a Rainy Day</h2>
+      <p>The storm rolled in. Here's everything worth doing indoors — and why the post-storm beach is often the best one.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week18-september-travel.html" class="card" data-cat="seasonal">
+    <div class="card-top seasonal"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Seasonal</span><span class="card-date">Sep 1, 2026</span></div>
+      <h2>Why September Is the Best-Kept Secret for Tampa Bay Travel</h2>
+      <p>Warm water, no crowds, lower prices, and the start of the best season of the year. The case for September.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week19-dog-travel-packing-list.html" class="card" data-cat="pet">
+    <div class="card-top pet"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Pet-Friendly</span><span class="card-date">Sep 8, 2026</span></div>
+      <h2>How to Travel with Your Dog: A Gulf Coast Packing List</h2>
+      <p>Everything you need for a smooth trip — from the non-negotiables to the beach-specific gear most people forget.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week20-tampa-city-guide.html" class="card" data-cat="area">
+    <div class="card-top area"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Area Guide</span><span class="card-date">Sep 15, 2026</span></div>
+      <h2>Tampa City Guide: What to Do Beyond the Beach</h2>
+      <p>Ybor City, the Riverwalk, Armature Works, and food that would earn headlines in any city. Tampa is worth your time.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week21-choose-right-rental.html" class="card" data-cat="tips">
+    <div class="card-top tips"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Guest Tips</span><span class="card-date">Sep 22, 2026</span></div>
+      <h2>How to Choose the Right Vacation Rental for Your Group</h2>
+      <p>Read listings like a skeptic, ask the right questions, and avoid the mistakes that ruin trips before they start.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week22-fall-florida-october.html" class="card" data-cat="seasonal">
+    <div class="card-top seasonal"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Seasonal</span><span class="card-date">Sep 29, 2026</span></div>
+      <h2>Fall in Florida: Why October Is the Gulf Coast's Sweetest Month</h2>
+      <p>Perfect weather, warm water, stone crab season, and none of the summer crowds. The local's secret season.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week23-best-breakfast-spots.html" class="card" data-cat="food">
+    <div class="card-top food"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Food &amp; Dining</span><span class="card-date">Oct 6, 2026</span></div>
+      <h2>Best Breakfast Spots in St. Pete and Clearwater</h2>
+      <p>From biscuits worth the wait to the diner that gets you to the beach by 9am — the Gulf Coast breakfast guide.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week24-fall-break-family-itinerary.html" class="card" data-cat="family">
+    <div class="card-top family"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Family Travel</span><span class="card-date">Oct 13, 2026</span></div>
+      <h2>Fall Break in Tampa Bay: A Family Itinerary for 5 Days</h2>
+      <p>Fort De Soto, Clearwater Marine Aquarium, Ybor City, and perfect October beaches. The complete fall break plan.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week25-pet-friendly-parks-trails.html" class="card" data-cat="pet">
+    <div class="card-top pet"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Pet-Friendly</span><span class="card-date">Oct 20, 2026</span></div>
+      <h2>Pet-Friendly State Parks and Trails Near Tampa Bay</h2>
+      <p>Honeymoon Island, Fort De Soto, Brooker Creek and more — the full guide to exploring Tampa Bay with your dog.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+  <a href="/blog/week26-best-deal-vacation-rental.html" class="card" data-cat="tips">
+    <div class="card-top tips"></div>
+    <div class="card-body">
+      <div class="card-meta"><span class="card-category">Guest Tips</span><span class="card-date">Oct 27, 2026</span></div>
+      <h2>How to Score the Best Deal on a Gulf Coast Vacation Rental</h2>
+      <p>Pricing calendars, platform fee savings, and how to negotiate. Get the best rate on your next Gulf Coast stay.</p>
+    </div>
+    <div class="card-footer">Read More →</div>
+  </a>
+
+</div>
+</main>
+
+<div class="cta-section">
+  <h2>Ready to Book Your Gulf Coast Trip?</h2>
+  <p>Sea &amp; City Rentals manages properties across St. Pete, Clearwater, Indian Rocks Beach, Tampa, Largo, and Palm Harbor. Book direct and skip the platform fees.</p>
+  <a href="https://seaandcityrentals.com" class="cta-btn">Browse All Properties</a>
+</div>
+
+<footer>
+  <p>Sea &amp; City Rentals &nbsp;·&nbsp; Tampa Bay, FL &nbsp;·&nbsp; <a href="https://seaandcityrentals.com">seaandcityrentals.com</a></p>
+  <p style="margin-top:8px;">&copy; 2026 Sea &amp; City Rentals. All rights reserved.</p>
+</footer>
+
+<script>
+  function filterCards(cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
