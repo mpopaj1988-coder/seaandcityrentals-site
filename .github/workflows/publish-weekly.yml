@@ -56,4 +56,3 @@ jobs:
             git commit -m "Weekly publish: $(date +%Y-%m-%d)"
             git push
           fi
-
